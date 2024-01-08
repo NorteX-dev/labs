@@ -1,0 +1,26 @@
+{
+	"BUILD_DIR" : "/home/nortex/Qts/build-qtfull-Desktop-Debug/qtfull_autogen",
+	"CMAKE_BINARY_DIR" : "/home/nortex/Qts/build-qtfull-Desktop-Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/nortex/Qts/build-qtfull-Desktop-Debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/nortex/Qts/qtfull",
+	"CMAKE_SOURCE_DIR" : "/home/nortex/Qts/qtfull",
+	"INCLUDE_DIR" : "/home/nortex/Qts/build-qtfull-Desktop-Debug/qtfull_autogen/include",
+	"INPUTS" : 
+	[
+		"/home/nortex/Qts/qtfull/save.png",
+		"/home/nortex/Qts/qtfull/shapes.png",
+		"/home/nortex/Qts/qtfull/wrench.png",
+		"/home/nortex/Qts/qtfull/folder-open.png",
+		"/home/nortex/Qts/qtfull/x-octagon.png"
+	],
+	"LOCK_FILE" : "/home/nortex/Qts/build-qtfull-Desktop-Debug/CMakeFiles/qtfull_autogen.dir/AutoRcc_icons_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "icons" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_icons.cpp",
+	"RCC_EXECUTABLE" : "/usr/lib/qt5/bin/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/nortex/Qts/build-qtfull-Desktop-Debug/CMakeFiles/qtfull_autogen.dir/AutoRcc_icons_EWIEGA46WW_Used.txt",
+	"SOURCE" : "/home/nortex/Qts/qtfull/icons.qrc",
+	"VERBOSITY" : 0
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="./zad2.js" defer charset="utf8"></script>
+	</head>
+	<body>
+		<form id="password-form">
+			<input type="password" id="pwd1" onkeyup="validateIfMatch()" />
+			<input type="password" id="pwd2" onkeyup="validateIfMatch()" />
+			<label
+				id="error-label"
+				style="
+					padding: 8px;
+					background-color: rgba(255, 0, 0, 0.2);
+					border: 1px solid red;
+					display: none;
+				"
+			></label>
+			<button type="submit" id="submit-btn">Submit</button>
+		</form>
+	</body>
+</html>

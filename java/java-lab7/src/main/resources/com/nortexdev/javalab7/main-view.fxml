@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="347.0" prefWidth="368.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.nortexdev.javalab7.AppController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <children>
+      <Label text="Dane Pacjenta">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <HBox prefHeight="40.0" prefWidth="328.0">
+         <children>
+            <Label prefHeight="30.0" prefWidth="37.0" text="Imię:" />
+            <TextField fx:id="imie" prefHeight="169.0" prefWidth="242.0">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
+      </HBox>
+      <HBox prefHeight="40.0" prefWidth="328.0">
+         <children>
+            <Label prefHeight="33.0" prefWidth="68.0" text="Nazwisko:" />
+            <TextField fx:id="nazwisko" prefHeight="149.0" prefWidth="206.0">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
+      </HBox>
+      <HBox prefHeight="40.0" prefWidth="328.0">
+         <children>
+            <Label prefHeight="55.0" prefWidth="36.0" text="Wiek:" />
+            <TextField fx:id="wiek" prefHeight="117.0" prefWidth="242.0">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
+      </HBox>
+      <HBox prefHeight="40.0" prefWidth="328.0">
+         <children>
+            <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddClick" prefHeight="41.0" prefWidth="147.0" text="Dodaj do kolekcji" />
+         </children>
+      </HBox>
+      <HBox prefHeight="40.0" prefWidth="328.0">
+         <children>
+            <Button fx:id="printButton" mnemonicParsing="false" onAction="#onPrintClick" prefHeight="77.0" prefWidth="79.0" text="Wydrukuj" />
+            <VBox prefHeight="26.0" prefWidth="249.0">
+               <children>
+                  <Label text="Sortuj po:" />
+                  <ComboBox fx:id="sortingBox" prefHeight="25.0" prefWidth="325.0" promptText="Wybierz sortowanie..." />
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+
+</VBox>

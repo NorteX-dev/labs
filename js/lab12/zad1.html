@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<form name="formularz">
+			<input
+				type="text"
+				name="tekst"
+				id="textfield"
+				onkeyup="validateText()"
+			/>
+			<label id="valLabel"></label>
+			<input
+				type="checkbox"
+				name="zaznacz"
+				onchange="validateCheckBox()"
+			/>
+		</form>
+		<script src="./index.js" />
+	</body>
+</html>

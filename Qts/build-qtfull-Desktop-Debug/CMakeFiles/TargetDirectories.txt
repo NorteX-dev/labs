@@ -1,0 +1,5 @@
+/home/nortex/Qts/build-qtfull-Desktop-Debug/CMakeFiles/qtfull.dir
+/home/nortex/Qts/build-qtfull-Desktop-Debug/CMakeFiles/edit_cache.dir
+/home/nortex/Qts/build-qtfull-Desktop-Debug/CMakeFiles/rebuild_cache.dir
+/home/nortex/Qts/build-qtfull-Desktop-Debug/CMakeFiles/qtfull_autogen_timestamp_deps.dir
+/home/nortex/Qts/build-qtfull-Desktop-Debug/CMakeFiles/qtfull_autogen.dir
