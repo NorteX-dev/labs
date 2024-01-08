@@ -141,6 +141,9 @@
     <addaction name="actionAveraging"/>
     <addaction name="actionGaussian"/>
     <addaction name="actionMedianAvg"/>
+    <addaction name="sobelClick"/>
+    <addaction name="prewittClick"/>
+    <addaction name="cannyClick"/>
    </widget>
    <addaction name="menuMENU"/>
    <addaction name="menuPrzetwarzanie_obraz_w"/>
@@ -239,6 +242,21 @@
   <action name="actionMedianAvg">
    <property name="text">
     <string>Uśrednianie medianowe</string>
+   </property>
+  </action>
+  <action name="sobelClick">
+   <property name="text">
+    <string>Detekcja krawędzi m. Sobela</string>
+   </property>
+  </action>
+  <action name="prewittClick">
+   <property name="text">
+    <string>Detekcja krawędzi m. Prewitta</string>
+   </property>
+  </action>
+  <action name="cannyClick">
+   <property name="text">
+    <string>Detekcja krawędzi m. Canny'ego</string>
    </property>
   </action>
  </widget>

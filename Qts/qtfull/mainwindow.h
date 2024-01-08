@@ -54,6 +54,7 @@ public:
     void UpdateAveraging();
     void UpdateGaussian();
     void UpdateMediana();
+
 private slots:
     // Lab 5
     void on_actionOpen_triggered();
@@ -85,6 +86,13 @@ private slots:
 
     void on_actionMedianAvg_triggered();
 
+
+    // Lab 11
+    void on_sobelClick_triggered();
+
+    void on_prewittClick_triggered();
+
+    void on_cannyClick_triggered();
 
 private:
     Ui::MainWindow *ui;
