@@ -55,6 +55,15 @@ public:
     void UpdateGaussian();
     void UpdateMediana();
 
+    // Lab 12
+    void Dylatacja();
+
+    void Erozja();
+
+    void Otwarcie();
+
+    void Zamkniecie();
+
 private slots:
     // Lab 5
     void on_actionOpen_triggered();
@@ -94,6 +103,15 @@ private slots:
 
     void on_cannyClick_triggered();
 
+    // Lab 12
+    void on_actionDylatacja_triggered();
+
+    void on_actionErozja_triggered();
+
+    void on_actionOtwarcie_triggered();
+
+    void on_actionZamkniecie_triggered();
+
 private:
     Ui::MainWindow *ui;
 
@@ -107,6 +125,9 @@ private:
     QProgressBar progressBar;
     QTimer *timer;
     QTime time;
+
+    int rozmiar_bazowy_elementu = 1;
+    int wybor_figury = 0;
 
 };
 #endif // MAINWINDOW_H

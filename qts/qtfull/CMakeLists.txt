@@ -12,7 +12,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 Qt5Widgets REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
-# Add OpenCV
 find_package(OpenCV REQUIRED)
 
 set(PROJECT_SOURCES
@@ -39,7 +38,6 @@ else()
     endif()
 endif()
 
-# Link against OpenCV
 target_link_libraries(qtfull PRIVATE Qt${QT_VERSION_MAJOR}::Widgets ${OpenCV_LIBS})
 
 if(QT_VERSION_MAJOR EQUAL 6)

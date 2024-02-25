@@ -1,9 +1,0 @@
-<RCC>
-    <qresource prefix="/icons">
-        <file>folder-open.png</file>
-        <file>save.png</file>
-        <file>x-octagon.png</file>
-        <file>wrench.png</file>
-        <file>shapes.png</file>
-    </qresource>
-</RCC>

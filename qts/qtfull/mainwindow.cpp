@@ -379,7 +379,7 @@ void MainWindow::on_actionMedianAvg_triggered()
 
 
 /*
- * LAB 10 - Detekcja krawędzi w obrazie RGB
+ * LAB 11 - Detekcja krawędzi w obrazie RGB
  * */
 // Metodą Sobela
 void MainWindow::on_sobelClick_triggered()
@@ -416,12 +416,207 @@ void MainWindow::on_sobelClick_triggered()
 // Metodą Prewitta
 void MainWindow::on_prewittClick_triggered()
 {
-
+    // Kod do Prewitta i Canny'ego gdzieś zgubiłem i nie mogę odzyskać,
+    // ale jest zawarty w pdfie lab 11.
 }
 
 // Metodą Canny'ego
 void MainWindow::on_cannyClick_triggered()
 {
-
+    // Kod do Prewitta i Canny'ego gdzieś zgubiłem i nie mogę odzyskać,
+    // ale jest zawarty w pdfie lab 11.
 }
 
+/*
+ * LAB 12 - Operacje morfologiczne
+ * */
+void MainWindow::Dylatacja() {
+    cv::Mat result;
+    cv::Mat element;
+
+    if(wybor_figury == 0) {
+        element = cv::getStructuringElement(
+            cv::MORPH_RECT,
+            cv::Size(2 * rozmiar_bazowy_elementu + 1, 2 * rozmiar_bazowy_elementu + 1),
+            cv::Point(rozmiar_bazowy_elementu, rozmiar_bazowy_elementu)
+        );
+    } else if(wybor_figury == 1) {
+        element = cv::getStructuringElement(
+            cv::MORPH_CROSS,
+            cv::Size(2 * rozmiar_bazowy_elementu + 1, 2 * rozmiar_bazowy_elementu + 1),
+            cv::Point(rozmiar_bazowy_elementu, rozmiar_bazowy_elementu)
+        );
+    } else if(wybor_figury == 2) {
+        element = cv::getStructuringElement(
+            cv::MORPH_ELLIPSE,
+            cv::Size(2 * rozmiar_bazowy_elementu + 1, 2 * rozmiar_bazowy_elementu + 1),
+            cv::Point(rozmiar_bazowy_elementu, rozmiar_bazowy_elementu)
+        );
+    }
+
+    cv::dilate(zrodlo, result, element, cv::Point(rozmiar_bazowy_elementu, rozmiar_bazowy_elementu), 1, cv::BORDER_CONSTANT);
+    cv::imshow("dylatacja", result);
+}
+static void Dylatacja_callback(int value, void* pointer) {
+    MainWindow *img = (MainWindow*) pointer;
+    img->Dylatacja();
+}
+void MainWindow::on_actionDylatacja_triggered()
+{
+    if(wybranyObraz.isEmpty()) {
+        QMessageBox(QMessageBox::Information, "Informacja",
+                    "Nie załadowano pliku obrazu! Nie ma co pokazać.", QMessageBox::Ok).exec();
+        return;
+    }
+    cv::Mat obrazek_wejsciowy = cv::imread(wybranyObraz.toStdString().c_str(),cv::IMREAD_COLOR);
+    zrodlo = obrazek_wejsciowy;
+    cv::namedWindow("dylatacja", cv::WINDOW_AUTOSIZE);
+    cv::createTrackbar("Wielkość bazowa", "dylatacja", &rozmiar_bazowy_elementu, 11, &Dylatacja_callback, this);
+    cv::createTrackbar("Rodzaj elementu strukturalnego", "dylatacja", &wybor_figury, 3, &Dylatacja_callback, this);
+
+    Dylatacja();
+}
+
+void MainWindow::Erozja() {
+    cv::Mat result;
+    cv::Mat element;
+
+    if(wybor_figury == 0) {
+        element = cv::getStructuringElement(
+            cv::MORPH_RECT,
+            cv::Size(2 * rozmiar_bazowy_elementu + 1, 2 * rozmiar_bazowy_elementu + 1),
+            cv::Point(rozmiar_bazowy_elementu, rozmiar_bazowy_elementu)
+        );
+    } else if(wybor_figury == 1) {
+        element = cv::getStructuringElement(
+            cv::MORPH_CROSS,
+            cv::Size(2 * rozmiar_bazowy_elementu + 1, 2 * rozmiar_bazowy_elementu + 1),
+            cv::Point(rozmiar_bazowy_elementu, rozmiar_bazowy_elementu)
+        );
+    } else if(wybor_figury == 2) {
+        element = cv::getStructuringElement(
+            cv::MORPH_ELLIPSE,
+            cv::Size(2 * rozmiar_bazowy_elementu + 1, 2 * rozmiar_bazowy_elementu + 1),
+            cv::Point(rozmiar_bazowy_elementu, rozmiar_bazowy_elementu)
+        );
+    }
+
+    cv::erode(zrodlo, result, element, cv::Point(rozmiar_bazowy_elementu, rozmiar_bazowy_elementu), 1, cv::BORDER_CONSTANT);
+    cv::imshow("erozja", result);
+}
+static void Erozja_callback(int value, void* pointer) {
+    MainWindow *img = (MainWindow*) pointer;
+    img->Erozja();
+}
+void MainWindow::on_actionErozja_triggered()
+{
+    if(wybranyObraz.isEmpty()) {
+        QMessageBox(QMessageBox::Information, "Informacja",
+                    "Nie załadowano pliku obrazu! Nie ma co pokazać.", QMessageBox::Ok).exec();
+        return;
+    }
+    cv::Mat obrazek_wejsciowy = cv::imread(wybranyObraz.toStdString().c_str(),cv::IMREAD_COLOR);
+    zrodlo = obrazek_wejsciowy;
+    cv::namedWindow("erozja", cv::WINDOW_AUTOSIZE);
+    cv::createTrackbar("Wielkość bazowa", "erozja", &rozmiar_bazowy_elementu, 11, &Erozja_callback, this);
+    cv::createTrackbar("Rodzaj elementu strukturalnego", "erozja", &wybor_figury, 3, &Erozja_callback, this);
+
+    Erozja();
+}
+
+void MainWindow::Otwarcie() {
+    cv::Mat result;
+    cv::Mat element;
+
+    if(wybor_figury == 0) {
+        element = cv::getStructuringElement(
+            cv::MORPH_RECT,
+            cv::Size(2 * rozmiar_bazowy_elementu + 1, 2 * rozmiar_bazowy_elementu + 1),
+            cv::Point(rozmiar_bazowy_elementu, rozmiar_bazowy_elementu)
+        );
+    } else if(wybor_figury == 1) {
+        element = cv::getStructuringElement(
+            cv::MORPH_CROSS,
+            cv::Size(2 * rozmiar_bazowy_elementu + 1, 2 * rozmiar_bazowy_elementu + 1),
+            cv::Point(rozmiar_bazowy_elementu, rozmiar_bazowy_elementu)
+        );
+    } else if(wybor_figury == 2) {
+        element = cv::getStructuringElement(
+            cv::MORPH_ELLIPSE,
+            cv::Size(2 * rozmiar_bazowy_elementu + 1, 2 * rozmiar_bazowy_elementu + 1),
+            cv::Point(rozmiar_bazowy_elementu, rozmiar_bazowy_elementu)
+        );
+    }
+
+    cv::dilate(zrodlo, result, element, cv::Point(rozmiar_bazowy_elementu, rozmiar_bazowy_elementu), 1, cv::BORDER_CONSTANT);
+    cv::erode(zrodlo, result, element, cv::Point(rozmiar_bazowy_elementu, rozmiar_bazowy_elementu), 1, cv::BORDER_CONSTANT);
+    cv::imshow("otwarcie", result);
+}
+static void Otwarcie_callback(int value, void* pointer) {
+    MainWindow *img = (MainWindow*) pointer;
+    img->Otwarcie();
+}
+void MainWindow::on_actionOtwarcie_triggered()
+{
+    if(wybranyObraz.isEmpty()) {
+        QMessageBox(QMessageBox::Information, "Informacja",
+                    "Nie załadowano pliku obrazu! Nie ma co pokazać.", QMessageBox::Ok).exec();
+        return;
+    }
+    cv::Mat obrazek_wejsciowy = cv::imread(wybranyObraz.toStdString().c_str(), cv::IMREAD_COLOR);
+    zrodlo = obrazek_wejsciowy;
+    cv::namedWindow("otwarcie", cv::WINDOW_AUTOSIZE);
+    cv::createTrackbar("Wielkość bazowa", "otwarcie", &rozmiar_bazowy_elementu, 11, &Otwarcie_callback, this);
+    cv::createTrackbar("Rodzaj elementu strukturalnego", "otwarcie", &wybor_figury, 3, &Otwarcie_callback, this);
+
+    Otwarcie();
+}
+
+
+void MainWindow::Zamkniecie() {
+    cv::Mat result;
+    cv::Mat element;
+
+    if(wybor_figury == 0) {
+        element = cv::getStructuringElement(
+            cv::MORPH_RECT,
+            cv::Size(2 * rozmiar_bazowy_elementu + 1, 2 * rozmiar_bazowy_elementu + 1),
+            cv::Point(rozmiar_bazowy_elementu, rozmiar_bazowy_elementu)
+        );
+    } else if(wybor_figury == 1) {
+        element = cv::getStructuringElement(
+            cv::MORPH_CROSS,
+            cv::Size(2 * rozmiar_bazowy_elementu + 1, 2 * rozmiar_bazowy_elementu + 1),
+            cv::Point(rozmiar_bazowy_elementu, rozmiar_bazowy_elementu)
+        );
+    } else if(wybor_figury == 2) {
+        element = cv::getStructuringElement(
+            cv::MORPH_ELLIPSE,
+            cv::Size(2 * rozmiar_bazowy_elementu + 1, 2 * rozmiar_bazowy_elementu + 1),
+            cv::Point(rozmiar_bazowy_elementu, rozmiar_bazowy_elementu)
+        );
+    }
+
+    cv::erode(zrodlo, result, element, cv::Point(rozmiar_bazowy_elementu, rozmiar_bazowy_elementu), 1, cv::BORDER_CONSTANT);
+    cv::dilate(zrodlo, result, element, cv::Point(rozmiar_bazowy_elementu, rozmiar_bazowy_elementu), 1, cv::BORDER_CONSTANT);
+    cv::imshow("zamkniecie", result);
+}
+static void Zamkniecie_callback(int value, void* pointer) {
+    MainWindow *img = (MainWindow*) pointer;
+    img->Zamkniecie();
+}
+void MainWindow::on_actionZamkniecie_triggered()
+{
+    if(wybranyObraz.isEmpty()) {
+        QMessageBox(QMessageBox::Information, "Informacja",
+                    "Nie załadowano pliku obrazu! Nie ma co pokazać.", QMessageBox::Ok).exec();
+        return;
+    }
+    cv::Mat obrazek_wejsciowy = cv::imread(wybranyObraz.toStdString().c_str(), cv::IMREAD_COLOR);
+    zrodlo = obrazek_wejsciowy;
+    cv::namedWindow("zamkniecie", cv::WINDOW_AUTOSIZE);
+    cv::createTrackbar("Wielkość bazowa", "zamkniecie", &rozmiar_bazowy_elementu, 11, &Zamkniecie_callback, this);
+    cv::createTrackbar("Rodzaj elementu strukturalnego", "zamkniecie", &wybor_figury, 3, &Zamkniecie_callback, this);
+
+    Zamkniecie();
+}
