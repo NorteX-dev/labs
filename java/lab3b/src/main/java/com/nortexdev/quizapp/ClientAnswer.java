@@ -1,0 +1,37 @@
+package com.nortexdev.quizapp;
+
+import java.io.Serializable;
+
+public class ClientAnswer implements Serializable {
+	private String nick;
+	private String answer;
+
+	public ClientAnswer(String nick, String answer) {
+		this.nick = nick;
+		this.answer = answer;
+	}
+
+	public String getNick() {
+		return nick;
+	}
+
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
+
+	public String getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
+
+	@Override
+	public String toString() {
+		return "ClientAnswer{" +
+			"nick='" + nick + '\'' +
+			", answer='" + answer + '\'' +
+			'}';
+	}
+}

@@ -15,7 +15,7 @@ public class Main {
 	}
 
 	// lambda z blokiem
-	static void przyklad1() {
+	private static void przyklad1() {
 		Runnable runnable = () -> {
 			System.out.println("Runnable");
 		};
@@ -23,7 +23,7 @@ public class Main {
 	}
 
 	// strzałka lambda
-	static void przyklad2() {
+	private static void przyklad2() {
 		Supplier<String> supplier = () -> "Supplier";
 		System.out.println(supplier.get());
 	}
@@ -41,20 +41,22 @@ public class Main {
 	}
 
 	// lambda ze wskazaniem konstruktora
-	static void przyklad4() {
+	private static void przyklad4() {
 		Function<String, Klasa> function = Klasa::new;
-		function.apply("Function");
+		function.apply("Function"); // Wykonuje się konstruktor z parametrem "Function"
 	}
 
-	static class Klasa2 {
+	private static class Klasa2 {
 		boolean method() {
 			return true;
 		}
 	}
 
 	// wskazanie na metodę w klasie
-	static void przyklad5() {
+	private static void przyklad5() {
 		Predicate<Klasa2> predicate = Klasa2::method;
-		predicate.test(new Klasa2());
+		if(predicate.test(new Klasa2())) {
+			System.out.println("Predicate test passed");
+		}
 	}
 }
