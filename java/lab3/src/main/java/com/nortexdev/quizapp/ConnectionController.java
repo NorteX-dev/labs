@@ -24,7 +24,7 @@ public class ConnectionController {
 	}
 
 	public void createProducer() {
-		System.out.println("ConnectionController.connect()");
+		System.out.println("ConnectionController.createProducer(): Adding sockets to queue");
 		try {
 			serverSocket = new ServerSocket(ConnectionController.PORT);
 			System.out.println("Listening at " + ConnectionController.PORT + ".");
@@ -37,32 +37,22 @@ public class ConnectionController {
 			}
 		} catch (IOException | InterruptedException e) {
 			e.printStackTrace();
-			System.out.println("ServerSocket creation failed.");
+			System.out.println("Server socket producer creation failed.");
 		}
 	}
 
 	public void createConsumer() {
 		while (true) {
-			System.out.println("ConnectionController.handleConnections()");
+			System.out.println("ConnectionController.createConsumer(): Taking from queue");
 			try {
 				Socket socket = SOCKET_QUEUE.take();
-				handleMessage(socket);
-			} catch (InterruptedException e) {
+				ObjectInputStream dataIn = new ObjectInputStream(socket.getInputStream());
+				ClientAnswer answer = (ClientAnswer) dataIn.readObject();
+				gameController.attempt(answer, socket.getInetAddress());
+				dataIn.close();
+			} catch (InterruptedException | IOException | ClassNotFoundException e) {
 				e.printStackTrace();
 			}
-		}
-	}
-
-	public void handleMessage(Socket socket) {
-		System.out.println("ConnectionController.handleMessage(): Handling message");
-		try {
-			ObjectInputStream dataIn = new ObjectInputStream(socket.getInputStream());
-			ClientAnswer answer = (ClientAnswer) dataIn.readObject();
-			System.out.println(answer);
-			gameController.attempt(answer, socket.getInetAddress());
-			dataIn.close();
-		} catch (IOException | ClassNotFoundException e) {
-			throw new RuntimeException(e);
 		}
 	}
 

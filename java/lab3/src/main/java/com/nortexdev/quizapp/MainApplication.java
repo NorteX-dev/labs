@@ -14,6 +14,9 @@ public class MainApplication extends Application {
 		Scene scene = new Scene(fxmlLoader.load(), 320, 240);
 		stage.setTitle("Quiz - Serwer");
 		stage.setScene(scene);
+		stage.setHeight(300);
+		stage.setWidth(400);
+		stage.setResizable(false);
 		stage.show();
 	}
 

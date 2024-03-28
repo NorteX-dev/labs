@@ -1,2 +1,1 @@
-Abc|Def
-Ghi|Jkl
+Jaki jest najlepszy język programowania?|TypeScript

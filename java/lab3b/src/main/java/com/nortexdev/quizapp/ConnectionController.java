@@ -1,8 +1,6 @@
 package com.nortexdev.quizapp;
 
 
-import javafx.scene.control.Alert;
-
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -12,9 +10,9 @@ public class ConnectionController {
 	public static final int SERVER_PORT = 6677;
 	private Socket socket = null;
 
-	private final MainController viewController;
+	private final ViewController viewController;
 
-	public ConnectionController(MainController viewController) {
+	public ConnectionController(ViewController viewController) {
 		this.viewController = viewController;
 	}
 
@@ -29,11 +27,6 @@ public class ConnectionController {
 				dataOut.close();
 			} catch (IOException e) {
 				e.printStackTrace();
-				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.setTitle("Błąd");
-				alert.setHeaderText("Błąd połączenia");
-				alert.setContentText("Nie udało się wysłać odpowiedzi. Upewnij się że serwer jest uruchomiony.");
-				alert.showAndWait();
 			}
 		}).start();
 	}

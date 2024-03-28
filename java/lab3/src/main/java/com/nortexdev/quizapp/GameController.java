@@ -7,15 +7,15 @@ import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.util.HashMap;
 
-
 public class GameController {
 	public static boolean GAME_IS_ON = false;
-	private final MainController viewController;
 	public static HashMap<String, String> GAME_QUESTIONS = new HashMap<>();
-	public static int QUESTION_INDEX = 0;
-
 	public static String CURRENT_QUESTION;
 	public static String CURRENT_ANSWER;
+
+	private static int QUESTION_INDEX = 0;
+
+	private final MainController viewController;
 
 	public GameController(MainController viewController) {
 		this.viewController = viewController;
@@ -43,16 +43,16 @@ public class GameController {
 	}
 
 	public void startGame() {
-		viewController.appendLog("Game started.");
+		viewController.appendLog("Nowa gra.");
 		GAME_IS_ON = true;
-		this.askQuestion();
+		this.askCurrentQuestion();
 	}
 
-	public void askQuestion() {
+	public void askCurrentQuestion() {
 		String[] questions = GAME_QUESTIONS.keySet().toArray(new String[0]);
 		String[] answers = GAME_QUESTIONS.values().toArray(new String[0]);
 		if (QUESTION_INDEX >= questions.length) {
-			viewController.appendLog("Odpowiedziano już na wszystkie pytania. Koniec gry.");
+			viewController.appendLog("\nOdpowiedziano już na wszystkie pytania. Koniec gry.");
 			GAME_IS_ON = false;
 			return;
 		}
@@ -64,13 +64,13 @@ public class GameController {
 	public void askNext() {
 		if (!GAME_IS_ON) return;
 		QUESTION_INDEX++;
-		this.askQuestion();
+		this.askCurrentQuestion();
 	}
 
-	public void attempt(ClientAnswer answer, InetAddress socket) {
+	public void attempt(ClientAnswer answer, InetAddress inetAddress) {
 		if (!GAME_IS_ON) return;
 		if (GameController.CURRENT_ANSWER.equalsIgnoreCase(answer.getAnswer())) {
-			viewController.appendLog(answer.getNick() + " (" + socket + ")" + " odpowiedział poprawnie.");
+			viewController.appendLog("%s (%s) odpowiedział poprawnie.".formatted(answer.getNick(), inetAddress));
 			this.askNext();
 			ConnectionController.clearQueue();
 		} else {

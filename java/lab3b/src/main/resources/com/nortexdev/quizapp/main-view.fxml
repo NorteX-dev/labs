@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="323.0" prefWidth="471.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1"
-	  xmlns="http://javafx.com/javafx/21" fx:controller="com.nortexdev.quizapp.MainController">
+<VBox alignment="CENTER" prefHeight="258.0" prefWidth="451.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+	  xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nortexdev.quizapp.ViewController">
 	<padding>
 		<Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
 	</padding>
 	<children>
 		<HBox prefHeight="11.0" prefWidth="999999.0">
 			<children>
-				<Label text="Your answer:" prefWidth="100.0"/>
+				<Label prefWidth="100.0" text="Your answer:"/>
 				<TextField fx:id="answerInput" prefHeight="26.0" prefWidth="300.0"/>
 			</children>
 		</HBox>
@@ -23,7 +20,7 @@
 				prefWidth="459.0" text="Send Answer &gt;&gt;"/>
 		<HBox prefHeight="11.0" prefWidth="999999.0">
 			<children>
-				<Label text="Your nick:" prefWidth="100.0"/>
+				<Label prefWidth="100.0" text="Your nick:"/>
 				<TextField fx:id="nickInput" prefHeight="26.0" prefWidth="300.0"/>
 			</children>
 		</HBox>
