@@ -12,11 +12,9 @@ public class ConnectionController {
 
 	private static ServerSocket serverSocket;
 
-	private final MainController viewController;
 	private final GameController gameController;
 
-	public ConnectionController(MainController viewController, GameController gameController) {
-		this.viewController = viewController;
+	public ConnectionController(GameController gameController) {
 		this.gameController = gameController;
 		System.out.println("ConnectionController created.");
 		new Thread(this::createProducer).start();
