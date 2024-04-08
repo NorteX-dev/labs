@@ -35,7 +35,7 @@ public class ConnectionController {
 			}
 		} catch (IOException | InterruptedException e) {
 			e.printStackTrace();
-			System.out.println("Server socket producer creation failed.");
+			System.out.println("Server socket producer failed.");
 		}
 	}
 
@@ -50,6 +50,7 @@ public class ConnectionController {
 				dataIn.close();
 			} catch (InterruptedException | IOException | ClassNotFoundException e) {
 				e.printStackTrace();
+				System.out.println("Server socket consumer failed.");
 			}
 		}
 	}
