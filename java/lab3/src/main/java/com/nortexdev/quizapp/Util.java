@@ -12,10 +12,7 @@ public class Util {
 	public static HashMap<String, String> getQuestionsFromFile(String fileName) {
 		HashMap<String, String> intermediateQuestions = new HashMap<>();
 		InputStream is = MainApplication.class.getResourceAsStream(fileName);
-		if (is == null) {
-			System.out.println("Questions file not found.");
-			return null;
-		}
+		if (is == null) return null;
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
 		String line;
 		while ((line = br.readLine()) != null) {

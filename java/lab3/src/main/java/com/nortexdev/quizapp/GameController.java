@@ -14,7 +14,6 @@ public class GameController {
 
 	public GameController(MainController viewController) {
 		this.viewController = viewController;
-		System.out.println("GameController created.");
 		GAME_QUESTIONS = Util.getQuestionsFromFile("questions.txt");
 		if (GAME_QUESTIONS == null) {
 			throw new RuntimeException("Failed to load questions.");
@@ -27,10 +26,6 @@ public class GameController {
 		return GAME_QUESTIONS.keySet().toArray(new String[0]);
 	}
 
-	private static String[] getAnswersArray() {
-		return GAME_QUESTIONS.values().toArray(new String[0]);
-	}
-
 	public void startGame() {
 		viewController.appendLog("Nowa gra.");
 		GAME_IS_ON = true;
@@ -39,7 +34,6 @@ public class GameController {
 
 	public void askCurrentQuestion() {
 		String[] questions = getQuestionsArray();
-		String[] answers = getAnswersArray();
 
 		int i = QUESTION_INDEX.get();
 		viewController.appendLog("\nNr %s): %s".formatted(i + 1, questions[i]));
@@ -58,15 +52,15 @@ public class GameController {
 		this.askCurrentQuestion();
 	}
 
-	public void attempt(ClientAnswer answer, InetAddress inetAddress) {
+	public void attempt(ClientAnswer submittedAnswer, InetAddress clientAddress) {
 		if (!GAME_IS_ON) return;
-		
+
 		String[] questions = getQuestionsArray();
 		int i = QUESTION_INDEX.get();
 		String correctAnswer = GAME_QUESTIONS.get(questions[i]);
 
-		if (correctAnswer.equalsIgnoreCase(answer.getAnswer())) {
-			viewController.appendLog("%s (%s) odpowiedział poprawnie.".formatted(answer.getNick(), inetAddress));
+		if (correctAnswer.equalsIgnoreCase(submittedAnswer.getAnswer())) {
+			viewController.appendLog("%s (%s) odpowiedział poprawnie.".formatted(submittedAnswer.getNick(), clientAddress));
 			this.askNext();
 			ConnectionController.clearQueue();
 		} else {

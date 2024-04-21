@@ -59,24 +59,21 @@ public class Main {
 	}
 
 	private static void przykladFlatMap() {
-		Group eagles = new Group("Eagles", List.of(
+		Group eagles = new Group("Eagles", Arrays.asList(
 			new Person2("Adam"),
 			new Person2("Piotr")
 		));
 
-		Group bikers = new Group("Bikers", List.of(
+		Group bikers = new Group("Bikers", Arrays.asList(
 			new Person2("Mateusz"),
 			new Person2("Henryk")
 		));
 
-		List<Group> groups = Arrays.asList(eagles, bikers);
-		List<Person2> allMembers = groups.stream()
+		Arrays.asList(eagles, bikers)
+			.stream()
 			.flatMap(group -> group.getMembers().stream())
-			.collect(Collectors.toList());
-
-		for (Person2 person : allMembers) {
-			System.out.println(person);
-		}
+			.map(Person2::toString)
+			.forEach(System.out::println);
 	}
 
 	private static void przykladReduce() {

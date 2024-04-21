@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 public class ViewController {
 	private ConnectionController connectionController;
 
+
 	@FXML
 	private TextField answerInput;
 
@@ -15,7 +16,7 @@ public class ViewController {
 
 	@FXML
 	public void initialize() {
-		connectionController = new ConnectionController(this);
+		connectionController = new ConnectionController();
 	}
 
 	@FXML

@@ -10,12 +10,6 @@ public class ConnectionController {
 	public static final int SERVER_PORT = 6677;
 	private Socket socket = null;
 
-	private final ViewController viewController;
-
-	public ConnectionController(ViewController viewController) {
-		this.viewController = viewController;
-	}
-
 	public void send(ClientAnswer clientAnswer) {
 		new Thread(() -> {
 			try {
@@ -23,7 +17,6 @@ public class ConnectionController {
 				socket.connect(new InetSocketAddress(SERVER_HOST, SERVER_PORT));
 				ObjectOutputStream dataOut = new ObjectOutputStream(socket.getOutputStream());
 				dataOut.writeObject(clientAnswer);
-				System.out.println("Sent " + clientAnswer.toString());
 				dataOut.close();
 			} catch (IOException e) {
 				e.printStackTrace();
