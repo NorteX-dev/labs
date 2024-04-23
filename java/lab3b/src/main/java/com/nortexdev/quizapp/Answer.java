@@ -2,11 +2,11 @@ package com.nortexdev.quizapp;
 
 import java.io.Serializable;
 
-public class ClientAnswer implements Serializable {
+public class Answer implements Serializable {
 	private String nick;
 	private String answer;
 
-	public ClientAnswer(String nick, String answer) {
+	public Answer(String nick, String answer) {
 		this.nick = nick;
 		this.answer = answer;
 	}
