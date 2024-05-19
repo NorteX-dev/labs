@@ -1,4 +1,4 @@
-package com.nortexdev.lab4;
+package com.nortexdev.lab4.classes;
 
 public class TestClass {
 	private String stringTest = "";

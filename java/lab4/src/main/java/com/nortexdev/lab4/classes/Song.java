@@ -1,4 +1,4 @@
-package com.nortexdev.lab4;
+package com.nortexdev.lab4.classes;
 
 import java.io.Serializable;
 

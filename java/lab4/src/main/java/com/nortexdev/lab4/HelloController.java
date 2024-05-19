@@ -1,5 +1,6 @@
 package com.nortexdev.lab4;
 
+import com.nortexdev.lab4.enums.PropertyFieldType;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -30,10 +31,7 @@ public class HelloController {
 		logBox.setPromptText("Empty...");
 		classPath.setPromptText("Enter a class path...");
 		reflectionManager = new ReflectionManager(this);
-		// TODO: DEV ONLY
-		classPath.setText("com.nortexdev.lab4.Song");
 	}
-
 
 	@FXML
 	public void onCreateObject() {
