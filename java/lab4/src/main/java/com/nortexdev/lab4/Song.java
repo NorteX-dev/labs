@@ -10,11 +10,11 @@ public class Song implements Serializable {
 	private String text;
 
 	public Song() {
-		this.title = "";
-		this.tempo = 0;
-		this.rhythm = "";
-		this.performer = "";
-		this.text = "";
+		this.title = "Tytuł";
+		this.tempo = 70;
+		this.rhythm = "4/4";
+		this.performer = "Abc";
+		this.text = "abcbawgd";
 	}
 
 	public String getTitle() {
