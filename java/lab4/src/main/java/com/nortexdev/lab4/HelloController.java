@@ -85,5 +85,4 @@ public class HelloController {
 		}
 		propertiesContainer.getChildren().add(hBox);
 	}
-
 }

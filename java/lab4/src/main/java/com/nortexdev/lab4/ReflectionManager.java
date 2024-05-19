@@ -40,17 +40,15 @@ public class ReflectionManager {
 
 		try {
 			Class<?> clazz = Class.forName(classPath);
-			Object object = clazz.getDeclaredConstructor().newInstance();
-			Field[] fields = object.getClass().getDeclaredFields();
-
-			currentObject = object;
+			currentObject = clazz.getDeclaredConstructor().newInstance();
+			Field[] fields = currentObject.getClass().getDeclaredFields();
 
 			for (Field field : fields) {
 				String methodName = "get" + field.getName().substring(0, 1).toUpperCase() + field.getName().substring(1);
 				Object value = currentObject.getClass().getMethod(methodName).invoke(currentObject);
 
 				PropertyFieldType fieldType = field.getName().contains("text") ? PropertyFieldType.TextArea : PropertyFieldType.TextField;
-				
+
 				controller.createPropertyField(field.getName(), String.valueOf(value), fieldType);
 			}
 			controller.appendLog("Created " + currentObject.toString());
@@ -85,7 +83,6 @@ public class ReflectionManager {
 			} else if (firstNodeOfHBox instanceof TextArea textArea) {
 				value = textArea.getText();
 			}
-			//	                       set    T                                    est
 			String setterMethodName = "set" + name.substring(0, 1).toUpperCase() + name.substring(1);
 
 			try {
