@@ -1,6 +1,7 @@
 package com.nortexdev.lab5;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
@@ -14,18 +15,22 @@ public class UIController {
 	private ImageView iconImg;
 
 	@FXML
+	private Button confirmBtn;
+
+	@FXML
 	private void onType() {
 		ValidatedClass validatedClass = new ValidatedClass();
 		Tooltip tooltip = new Tooltip();
 		try {
 			validatedClass.setField(textField.getText());
 			tooltip.hide();
-			Tooltip.uninstall(iconImg, tooltip);
 			setIcon(Icon.Success);
+			confirmBtn.setDisable(false);
 		} catch (Exception e) {
 			tooltip.setText(e.getMessage());
 			Tooltip.install(iconImg, tooltip);
 			setIcon(Icon.Error);
+			confirmBtn.setDisable(true);
 		}
 	}
 

@@ -1,15 +1,14 @@
-package com.nortexdev.lab6.domain;
+package com.nortexdev.lab6.models;
 
 import com.nortexdev.lab6.enums.NoteImportance;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name="notes")
@@ -18,7 +17,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Note {
 	@Id
-	@GeneratedValue(strategy =  GenerationType.IDENTITY)
+	@GeneratedValue()
+	@Column
 	private Integer id;
 
 	@Column
@@ -28,13 +28,14 @@ public class Note {
 	private String text;
 
 	@Column
-	private LocalDateTime timestamp;
+	private Date timestamp;
 
 	@CreationTimestamp
 	@Column
-	private LocalDateTime createdAt;
+	private Date createdAt;
 
 	@UpdateTimestamp
 	@Column
-	private LocalDateTime updatdAt;
+	private Date updatedAt;
+
 }

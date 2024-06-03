@@ -3,6 +3,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddHostedService<NumbersBackgroundService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -25,3 +27,10 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+var loggerFactory = app.Services.GetRequiredService<ILoggerFactory>();
+if(!Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "logs")))
+{
+	Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "logs"));
+}
+loggerFactory.AddFile(Path.Combine(Directory.GetCurrentDirectory(), "logs"));

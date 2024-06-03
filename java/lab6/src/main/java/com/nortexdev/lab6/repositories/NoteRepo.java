@@ -1,6 +1,6 @@
-package com.nortexdev.lab6.repos;
+package com.nortexdev.lab6.repositories;
 
-import com.nortexdev.lab6.domain.Note;
+import com.nortexdev.lab6.models.Note;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
