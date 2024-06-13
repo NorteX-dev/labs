@@ -13,8 +13,11 @@ import java.util.List;
 
 @Controller
 public class NoteController {
-	@Autowired
-	private NoteService noteService;
+	private final NoteService noteService;
+
+	public NoteController(NoteService noteService) {
+		this.noteService = noteService;
+	}
 
 	@GetMapping("/notes")
 	public String getAllRoute(Model model) {
