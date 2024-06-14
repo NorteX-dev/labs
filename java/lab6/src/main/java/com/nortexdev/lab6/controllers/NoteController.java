@@ -1,10 +1,8 @@
 package com.nortexdev.lab6.controllers;
 
-import com.nortexdev.lab6.enums.NoteImportance;
 import com.nortexdev.lab6.models.Note;
 import com.nortexdev.lab6.services.NoteService;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +21,6 @@ public class NoteController {
 	public String getAllRoute(Model model) {
 		List<Note> notes = noteService.getNotes();
 		model.addAttribute("notes", notes);
-		model.addAttribute("importances", NoteImportance.values());
 		return "notes";
 	}
 

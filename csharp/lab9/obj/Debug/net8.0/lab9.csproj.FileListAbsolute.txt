@@ -29,3 +29,6 @@
 /home/nortex/labs/csharp/lab9/obj/Debug/net8.0/lab9.pdb
 /home/nortex/labs/csharp/lab9/obj/Debug/net8.0/lab9.genruntimeconfig.cache
 /home/nortex/labs/csharp/lab9/obj/Debug/net8.0/ref/lab9.dll
+C:\Users\NorteX\Desktop\Projects\labs\csharp\lab9\obj\Debug\net8.0\lab9.dll
+C:\Users\NorteX\Desktop\Projects\labs\csharp\lab9\obj\Debug\net8.0\refint\lab9.dll
+C:\Users\NorteX\Desktop\Projects\labs\csharp\lab9\obj\Debug\net8.0\lab9.pdb
