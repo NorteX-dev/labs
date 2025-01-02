@@ -1,0 +1,36 @@
+name: flutter_application_1
+description: "A new Flutter project."
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ^3.5.3
+
+dependencies:
+  audioplayers: ^1.1.1
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - image0.png
+    - image1.png
+    - image2.png
+    - image3.png
+    - image4.png
+    - image5.png
+    - image6.png
+    - image7.png
+    - image8.png
+    - image9.png
+    - image10.png
+    - assets/start.mp3
+    - assets/win.mp3
+    - assets/loss.mp3
+    - assets/wrong_letter.mp3
