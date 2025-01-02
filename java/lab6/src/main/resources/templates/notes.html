@@ -14,7 +14,7 @@
 		<div class="form-group">
 			<label for="importance">Importance</label>
 			<select name="importance" id="importance" class="form-control">
-				<option th:each="importance : ${importances}" th:text="${importance}"></option>
+				<option th:each="importance : ${T(com.nortexdev.lab6.enums.NoteImportance).values()}" th:text="${importance}"></option>
 			</select>
 		</div>
 		<div class="form-group mt-4">
@@ -25,12 +25,11 @@
 	</form>
 
 	<h1 class="py-4">Your notes:</h1>
-
 	<table class="table">
 		<tr>
 			<th scope="col">Importance</th>
 			<th scope="col">Text</th>
-			<th scope="col">Timestap</th>
+			<th scope="col">Timestamp</th>
 		</tr>
 		<tr th:each="note : ${notes}">
 			<td th:text="${note.importance}"></td>
