@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
 import 'dart:async';
 
 void main() {
@@ -12,7 +11,7 @@ class MemoryGameApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Memory Game',
+      title: 'Gra Memory',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -26,19 +25,18 @@ class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
 
   @override
-  _MenuScreenState createState() => _MenuScreenState();
+  State<MenuScreen> createState() => _MenuScreenState();
 }
 
 class _MenuScreenState extends State<MenuScreen> {
   int _selectedGridSize = 4;
-
   final List<int> _gridSizeOptions = [4, 6, 8];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Memory Game'),
+        title: const Text('Memory'),
       ),
       body: Center(
         child: Column(
@@ -49,7 +47,7 @@ class _MenuScreenState extends State<MenuScreen> {
               items: _gridSizeOptions.map((size) {
                 return DropdownMenuItem(
                   value: size,
-                  child: Text('$size x $size Grid'),
+                  child: Text('Siatka $size x $size'),
                 );
               }).toList(),
               onChanged: (value) {
@@ -69,7 +67,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   ),
                 );
               },
-              child: const Text('Start Game'),
+              child: const Text('Rozpocznij grę'),
             ),
           ],
         ),
@@ -84,14 +82,84 @@ class GameScreen extends StatefulWidget {
   const GameScreen({super.key, required this.gridSize});
 
   @override
-  _GameScreenState createState() => _GameScreenState();
+  State<GameScreen> createState() => _GameScreenState();
 }
 
 class _GameScreenState extends State<GameScreen> {
-  late int gridSize;
-  late List<Color> colors;
-  late List<bool> isRevealed;
-  late List<bool> isMatched;
+  final List<Color> colorList = [
+    Colors.red,
+    Colors.blue,
+    Colors.green,
+    Colors.yellow,
+    Colors.purple,
+    Colors.orange,
+    Colors.pink,
+    Colors.teal,
+    Colors.brown,
+    Colors.indigo,
+    Colors.lime,
+    Colors.cyan,
+    Colors.amber,
+    Colors.deepOrange,
+    Colors.lightBlue,
+    Colors.lightGreen,
+    Colors.red[300]!,
+    Colors.red[900]!,
+    Colors.redAccent[400]!,
+    Colors.pink[300]!,
+    Colors.deepOrange[300]!,
+    Colors.deepOrange[900]!,
+    Colors.blue[300]!,
+    Colors.blue[900]!,
+    Colors.lightBlue[300]!,
+    Colors.lightBlue[900]!,
+    Colors.cyan[900]!,
+    Colors.indigo[300]!,
+    Colors.green[300]!,
+    Colors.green[900]!,
+    Colors.lightGreen[300]!,
+    Colors.lightGreen[900]!,
+    Colors.teal[300]!,
+    Colors.teal[900]!,
+    Colors.yellow[600]!,
+    Colors.yellow[900]!,
+    Colors.amber[300]!,
+    Colors.amber[900]!,
+    Colors.orange[300]!,
+    Colors.orange[900]!,
+    Colors.purple[300]!,
+    Colors.purple[900]!,
+    Colors.deepPurple[300]!,
+    Colors.deepPurple[900]!,
+    Colors.indigo[900]!,
+    Colors.pink[900]!,
+    Colors.brown[300]!,
+    Colors.brown[900]!,
+    Colors.blueGrey[300]!,
+    Colors.blueGrey[900]!,
+    Colors.grey[700]!,
+    Colors.grey[900]!,
+    Colors.redAccent,
+    Colors.pinkAccent,
+    Colors.purpleAccent,
+    Colors.deepPurpleAccent,
+    Colors.indigoAccent,
+    Colors.blueAccent,
+    Colors.lightBlueAccent,
+    Colors.cyanAccent,
+    Colors.tealAccent,
+    Colors.greenAccent,
+    Colors.lightGreenAccent,
+    Colors.limeAccent,
+    Colors.yellowAccent,
+    Colors.amberAccent,
+    Colors.orangeAccent,
+    Colors.deepOrangeAccent,
+  ];
+  late List<Color> colors; // Wszystkie kolory kart (tj. 2x każdy kolor)
+  late List<bool> isRevealed; // Czy karta jest odkryta
+  late List<bool> isMatched; // Czy karta jest taka sama
+
   List<int> selectedCards = [];
   int moves = 0;
   DateTime? startTime;
@@ -99,39 +167,25 @@ class _GameScreenState extends State<GameScreen> {
   Timer? _timer;
   bool _isProcessing = false;
 
-  Color _generateColor() {
-    final Random random = Random();
-
-    int r = random.nextInt(130) + 75;
-    int g = random.nextInt(130) + 75;
-    int b = random.nextInt(130) + 75;
-
-    return Color.fromRGBO(r, g, b, 1);
-  }
-
   @override
   void initState() {
     super.initState();
-    gridSize = widget.gridSize;
     _initializeGame();
   }
 
   void _initializeGame() {
-    int requiredUniqueColors = (gridSize * gridSize) ~/ 2;
+    int pairsNeeded = (widget.gridSize * widget.gridSize) ~/ 2;
+    List<Color> gameColors = colorList.take(pairsNeeded).toList();
+    colors = [...gameColors, ...gameColors]..shuffle();
 
-    Set<Color> uniqueColors = {};
-    while (uniqueColors.length < requiredUniqueColors) {
-      uniqueColors.add(_generateColor());
-    }
-
-    colors = uniqueColors.expand((color) => [color, color]).toList()..shuffle();
-
-    isRevealed = List.filled(gridSize * gridSize, false);
-    isMatched = List.filled(gridSize * gridSize, false);
+    isRevealed = List.filled(widget.gridSize * widget.gridSize, false);
+    isMatched = List.filled(widget.gridSize * widget.gridSize, false);
     moves = 0;
     _isProcessing = false;
+    selectedCards.clear();
 
     startTime = DateTime.now();
+    _timer?.cancel();
     _startTimer();
   }
 
@@ -159,7 +213,7 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _checkForMatch() {
-    Future.delayed(const Duration(seconds: 1), () {
+    Future.delayed(const Duration(milliseconds: 800), () {
       if (colors[selectedCards[0]] == colors[selectedCards[1]]) {
         setState(() {
           isMatched[selectedCards[0]] = true;
@@ -187,11 +241,12 @@ class _GameScreenState extends State<GameScreen> {
   void _showWinDialog() {
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Gratulacje!'),
-          content: Text('Wygrałeś w ${gameTime.inSeconds} sekund!\n'
-              'Ruchy: $moves'),
+          content: Text('Ukończyłeś grę w ${gameTime.inSeconds} sekund!\n'
+              'Liczba ruchów: $moves'),
           actions: [
             TextButton(
               child: const Text('Zagraj ponownie'),
@@ -230,11 +285,11 @@ class _GameScreenState extends State<GameScreen> {
         child: GridView.builder(
           padding: const EdgeInsets.all(16),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: gridSize,
+            crossAxisCount: widget.gridSize,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
           ),
-          itemCount: gridSize * gridSize,
+          itemCount: widget.gridSize * widget.gridSize,
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () => _handleCardTap(index),
