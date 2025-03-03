@@ -11,7 +11,6 @@ dependencies:
     sdk: flutter
   sensors_plus: ^3.0.0
   fl_chart: ^0.63.0
-  path_provider: ^2.0.15
 
 dev_dependencies:
   flutter_test:
