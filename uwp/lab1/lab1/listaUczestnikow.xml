@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <osoby xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:noNamespaceSchemaLocation="schema.xsd">
-    <uczestnik lp="1" nazwisko="Bany" imie="Natalia" rok="2011" kierunek="administracja"  dojazd="krótki" />
-    <uczestnik lp="2" nazwisko="Borowski" imie="Grzegorz" rok="2012" kierunek="administracja"  dojazd="średni" />
-    <uczestnik lp="2" nazwisko="Bronikowski" imie="Michał Jerzy Adam" rok="2012" kierunek="administracja" dojazd="krótki" stypendium="tak" />
-    <uczestnik lp="2" nazwisko="Jasińska" imie="Monika" rok="2012" kierunek="zarządzanie"  dojazd="długi" />
-    <uczestnik lp="2" nazwisko="Kopczyńska" imie="Jolanta" rok="2012" kierunek="administracja"  dojazd="brak" stypendium="tak" />
+	   xsi:noNamespaceSchemaLocation="schema.xsd">
+	<uczestnik lp="1" nazwisko="Bany" imie="Natalia" rok="2011" kierunek="administracja" dojazd="krótki">
+		<przedmioty>
+			<przedmiot nazwa="finanse" godziny="30" ects="3" />
+			<przedmiot nazwa="prawo" godziny="60" ects="6" />
+		</przedmioty>
+	</uczestnik>
+	<uczestnik lp="2" nazwisko="Borowski" imie="Grzegorz" rok="2012" kierunek="administracja" dojazd="średni">
+		<przedmioty>
+			<przedmiot nazwa="" godziny="" ects="" />
+		</przedmioty>
+	</uczestnik>
+	<uczestnik lp="2" nazwisko="Bronikowski" imie="Michał Jerzy Adam" rok="2012" kierunek="administracja"
+			   dojazd="krótki" stypendium="tak" />
+	<uczestnik lp="2" nazwisko="Jasińska" imie="Monika" rok="2012" kierunek="zarządzanie" dojazd="długi" />
+	<uczestnik lp="2" nazwisko="Kopczyńska" imie="Jolanta" rok="2012" kierunek="administracja" dojazd="brak"
+			   stypendium="tak" />
 </osoby>
